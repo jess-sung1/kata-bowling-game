@@ -15,6 +15,9 @@ export class Game implements GameInterface {
         if (pins > 10) {
             throw new Error('Pins cannot be greater than 10');
         }
+        if (this.frames.length === 10) {
+            throw new Error('Game is already complete');
+        }
         if (this.frames.length === 0 || this.frames[this.currentFrameIndex].isComplete()) {
             this.frames.push(new Frame());
             this.currentFrameIndex++;

@@ -46,5 +46,11 @@ describe('Game', () => {
         expect(game.getFrames()).toBe(2);
     });
 
-   
+   it('should end the game after 10 frames', () => {
+        for (let i = 0; i < 10; i++) {
+            game.roll(10);
+        }
+        expect(() => game.roll(1)).toThrow('Game is already complete');
+        expect(game.getFrames()).toBe(10);
+   });
 });

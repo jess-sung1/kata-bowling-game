@@ -2,6 +2,7 @@ export class Frame {
     private currentRoll: number = 1;
     private score: number = 0;
     private isStrike: boolean = false;
+    
 
     roll(pins: number): void {
         if(this.score + pins > 10) {
