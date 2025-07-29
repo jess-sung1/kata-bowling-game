@@ -30,4 +30,9 @@ export class Game implements GameInterface {
             return total + frame.getScore();
         }, 0);
     }
+
+    getFrames(): number {
+        return this.frames.length ? this.frames.length : 0;
+    }
+
 }

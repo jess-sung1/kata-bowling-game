@@ -39,7 +39,12 @@ describe('Game', () => {
         expect(game.score()).toBe(13);
     });
 
-    
+    it('strike should end the frame', () => {
+        game.roll(10);
+        game.roll(5);
+        expect(game.score()).toBe(15);
+        expect(game.getFrames()).toBe(2);
+    });
 
-    
+   
 });
