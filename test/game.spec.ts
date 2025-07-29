@@ -61,6 +61,13 @@ describe('Game', () => {
         expect(game.score()).toBe(24); // 10 + 3 + 4 + 7 (bonus)
     });
 
+    it ('should add bonus for strike for consecutive strikes', () => {
+        game.roll(10); // Strike
+        game.roll(10); // Strike
+        game.roll(10); // Strike
+        expect(game.score()).toBe(50); 
+    });
+
     it('should add bonus for spare based on next roll', () => {
         game.roll(5);
         game.roll(5); // Spare
