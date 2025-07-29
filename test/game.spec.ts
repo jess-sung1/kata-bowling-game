@@ -60,4 +60,12 @@ describe('Game', () => {
         game.roll(4);
         expect(game.score()).toBe(24); // 10 + 3 + 4 + 7 (bonus)
     });
+
+    it('should add bonus for spare based on next roll', () => {
+        game.roll(5);
+        game.roll(5); // Spare
+        game.roll(4);
+        game.roll(2);
+        expect(game.score()).toBe(20); // 5 + 5 + 4 + 4 + 2(bonus)
+    });
 });

@@ -33,7 +33,10 @@ export class Game implements GameInterface {
         for (let i = 0; i < this.frames.length; i++) {
             if (i > 0 && this.frames[i - 1].isStrikeFrame()) {
                 totalScore += 2 * this.frames[i].getScore();
-            } else {
+            } else if (i > 0 && this.frames[i - 1].isSpareFrame()) {
+                totalScore += this.frames[i].getFirstRoll() + this.frames[i].getScore();
+            }
+            else {
                 totalScore += this.frames[i].getScore();
             }
         }

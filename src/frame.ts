@@ -3,6 +3,7 @@ export class Frame {
     private firstRoll: number = 0;
     private score: number = 0;
     private isStrike: boolean = false;
+    private isSpare: boolean = false;
 
 
     roll(pins: number): void {
@@ -16,6 +17,9 @@ export class Frame {
             this.firstRoll = pins;
         }
         this.score += pins;
+        if(this.score===10){
+            this.isSpare=true;
+        }
         this.currentRoll++;
     }
 
@@ -25,6 +29,10 @@ export class Frame {
 
     isStrikeFrame(): boolean {
         return this.isStrike;
+    }
+
+    isSpareFrame(): boolean {
+        return this.isSpare;
     }
 
     getScore(): number {
