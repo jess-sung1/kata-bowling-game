@@ -29,7 +29,14 @@ describe('Game', () => {
 
     it('total score of one frame should not be greater than 10 without bonus', () => {
         game.roll(5);
-        expect(() => game.roll(6)).toThrow('Score cannot be greater than 10'); 
+        expect(() => game.roll(6)).toThrow('Score in a frame cannot be greater than 10'); 
+    });
+
+    it('should allow three rolls in a row', () => {
+        game.roll(3);
+        game.roll(4);
+        game.roll(6);
+        expect(game.score()).toBe(13);
     });
 
     

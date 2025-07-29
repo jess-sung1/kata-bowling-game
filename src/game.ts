@@ -21,7 +21,7 @@ export class Game implements GameInterface {
         }
         let currentFrame=this.frames[this.currentFrameIndex];
         
-        currentFrame.rolls(pins);
+        currentFrame.roll(pins);
          
     }
 
