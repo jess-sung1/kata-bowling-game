@@ -1,22 +1,33 @@
 import { GameInterface } from "./game.interface";
+import { Frame } from "./frame";
 
 export class Game implements GameInterface {
-    scoreValue: number = 0;
+    private frames: Frame[] = [];
+    private currentFrameIndex: number = -1;
 
-    roll(pins:number): void {
+    roll(pins: number): void {
         if (pins === null) {
-            throw new Error('Roll cannot be null');
+            throw new Error('Pins cannot be null');
         }
         if (pins < 0) {
-            throw new Error('Roll cannot be less than 0');
+            throw new Error('Pins cannot be less than 0');
         }
         if (pins > 10) {
-            throw new Error('Roll cannot be greater than 10');
+            throw new Error('Pins cannot be greater than 10');
         }
-        this.scoreValue+= pins;
+        if (this.frames.length === 0 || this.frames[this.currentFrameIndex].isComplete()) {
+            this.frames.push(new Frame());
+            this.currentFrameIndex++;
+        }
+        let currentFrame=this.frames[this.currentFrameIndex];
+        
+        currentFrame.rolls(pins);
+         
     }
 
     score(): number {
-        return this.scoreValue;
+        return this.frames.reduce((total, frame) => {
+            return total + frame.getScore();
+        }, 0);
     }
 }
