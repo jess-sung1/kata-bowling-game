@@ -29,9 +29,15 @@ export class Game implements GameInterface {
     }
 
     score(): number {
-        return this.frames.reduce((total, frame) => {
-            return total + frame.getScore();
-        }, 0);
+        let totalScore = 0;
+        for (let i = 0; i < this.frames.length; i++) {
+            if (i > 0 && this.frames[i - 1].isStrikeFrame()) {
+                totalScore += 2 * this.frames[i].getScore();
+            } else {
+                totalScore += this.frames[i].getScore();
+            }
+        }
+        return totalScore;
     }
 
     getFrames(): number {

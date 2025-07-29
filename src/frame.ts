@@ -1,8 +1,9 @@
 export class Frame {
     private currentRoll: number = 1;
+    private firstRoll: number = 0;
     private score: number = 0;
     private isStrike: boolean = false;
-    
+
 
     roll(pins: number): void {
         if(this.score + pins > 10) {
@@ -11,8 +12,19 @@ export class Frame {
         if (pins == 10) {
             this.isStrike = true;
         }
+        if (this.currentRoll == 1) {
+            this.firstRoll = pins;
+        }
         this.score += pins;
         this.currentRoll++;
+    }
+
+    getFirstRoll(): number {
+        return this.firstRoll;
+    }
+
+    isStrikeFrame(): boolean {
+        return this.isStrike;
     }
 
     getScore(): number {

@@ -53,4 +53,11 @@ describe('Game', () => {
         expect(() => game.roll(1)).toThrow('Game is already complete');
         expect(game.getFrames()).toBe(10);
    });
+
+   it ('should add bonus for strike based on next two rolls', () => {
+        game.roll(10); // Strike
+        game.roll(3);
+        game.roll(4);
+        expect(game.score()).toBe(24); // 10 + 3 + 4 + 7 (bonus)
+    });
 });
